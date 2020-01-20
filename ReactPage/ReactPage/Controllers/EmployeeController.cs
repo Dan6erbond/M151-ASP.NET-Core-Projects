@@ -17,7 +17,6 @@ namespace ReactPage.Controllers
 	{
 		public IEnumerable<Employee> Index()
 		{
-			// string connectionString = ConfigurationManager.ConnectionStrings["EmployeeConnection"].ConnectionString;
 			string connectionString = "server=localhost;port=3306;user=root;password=;database=employee_manager_react";
 
 			List<Employee> employees = new List<Employee>();

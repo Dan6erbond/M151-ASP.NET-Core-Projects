@@ -2,25 +2,26 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 
 export class EmployeeData {
-    employeeId: number = 0;
+    employeeID: number = 0;
     name: string = "";
     gender: string = "";
     city: string = "";
     department: string = "";
 }
 
-interface EmployeesDataState {
+interface EmployeesProps {
+
+}
+
+interface EmployeesState {
     empList: EmployeeData[];
     loading: boolean;
 } 
 
-class Employees extends React.Component<{}, EmployeesDataState> {
-    constructor(props: {}) {
+class Employees extends React.Component<EmployeesProps, EmployeesState> {
+    constructor(props: EmployeesProps) {
         super(props);
         this.state = { empList: [], loading: true };
-
-        fetch('api/employees')
-            .then(response => console.log(response))
 
         fetch('api/employees')
             .then(response => response.json() as Promise<EmployeeData[]>)
@@ -55,9 +56,9 @@ class Employees extends React.Component<{}, EmployeesDataState> {
             </thead>
             <tbody>
                 {empList.map(emp =>
-                    <tr key={emp.employeeId}>
+                    <tr key={emp.employeeID}>
                         <td></td>
-                        <td>{emp.employeeId}</td>
+                        <td>{emp.employeeID}</td>
                         <td>{emp.name}</td>
                         <td>{emp.gender}</td>
                         <td>{emp.department}</td>
