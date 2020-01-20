@@ -1,0 +1,22 @@
+CREATE DATABASE employee_manager_react;
+
+CREATE TABLE tblEmployee (      
+EmployeeID int NOT NULL AUTO_INCREMENT,
+Name varchar(20) NOT NULL,
+City varchar(20) NOT NULL,
+Department varchar(20) NOT NULL,
+Gender varchar(6) NOT NULL,
+PRIMARY KEY (EmployeeID)
+);
+
+CREATE TABLE tblCities (      
+CityID int NOT NULL AUTO_INCREMENT,
+CityName varchar(20) NOT NULL,
+PRIMARY KEY (CityID)
+);
+
+INSERT INTO tblCities VALUES(NULL, 'New Delhi');      
+INSERT INTO tblCities VALUES(NULL, 'Mumbai');      
+INSERT INTO tblCities VALUES(NULL, 'Hyderabad');      
+INSERT INTO tblCities VALUES(NULL, 'Chennai');      
+INSERT INTO tblCities VALUES(NULL, 'Bengaluru');
