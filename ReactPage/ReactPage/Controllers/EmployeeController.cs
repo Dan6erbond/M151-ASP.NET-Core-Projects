@@ -15,16 +15,11 @@ namespace ReactPage.Controllers
 	[Route("api/employees")]
 	public class EmployeeController : Controller
 	{
+		private EmployeeRepository Repository = new EmployeeRepository();
+
 		public IEnumerable<Employee> Index()
 		{
-			string connectionString = "server=localhost;port=3306;user=root;password=;database=employee_manager_react";
-
-			List<Employee> employees = new List<Employee>();
-			using (IDbConnection db = new MySqlConnection(connectionString))
-			{
-				employees = db.Query<Employee>("SELECT * FROM tblemployee").ToList();
-				return employees;
-			}
+			return Repository.List;
 		}
 	}
 }

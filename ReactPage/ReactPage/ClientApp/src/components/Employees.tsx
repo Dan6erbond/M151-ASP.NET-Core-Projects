@@ -9,17 +9,16 @@ export class EmployeeData {
     department: string = "";
 }
 
-interface EmployeesProps {
-
+interface IProps {
 }
 
-interface EmployeesState {
+interface IState {
     empList: EmployeeData[];
     loading: boolean;
 } 
 
-class Employees extends React.Component<EmployeesProps, EmployeesState> {
-    constructor(props: EmployeesProps) {
+class Employees extends React.Component<IProps, IState> {
+    constructor(props: IProps) {
         super(props);
         this.state = { empList: [], loading: true };
 
