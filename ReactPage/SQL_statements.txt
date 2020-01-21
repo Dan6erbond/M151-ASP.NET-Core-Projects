@@ -20,3 +20,6 @@ INSERT INTO tblCities VALUES(NULL, 'Mumbai');
 INSERT INTO tblCities VALUES(NULL, 'Hyderabad');      
 INSERT INTO tblCities VALUES(NULL, 'Chennai');      
 INSERT INTO tblCities VALUES(NULL, 'Bengaluru');
+
+INSERT INTO `tblemployee` (`EmployeeID`, `Name`, `City`, `Department`, `Gender`) VALUES (NULL, 'Ravi', 'Zofingen', 'IT', 'Male');
+INSERT INTO `tblemployee` (`EmployeeID`, `Name`, `City`, `Department`, `Gender`) VALUES (NULL, 'Dominik', 'Luzern', 'Front-End', 'Male');
