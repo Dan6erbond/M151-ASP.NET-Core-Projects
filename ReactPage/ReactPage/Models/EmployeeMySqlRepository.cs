@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ReactPage.Models
 {
-	public class EmployeeRepository : IRepository<Employee>
+	public class EmployeeMySqlRepository : IRepository<Employee>
 	{
 		private readonly String connectionString = "server=localhost;port=3306;user=root;password=;database=employee_manager_react";
 		public IEnumerable<Employee> List
@@ -42,14 +42,7 @@ namespace ReactPage.Models
 
 		public List<Employee> Query(ISpecification<Employee> specification)
 		{
-			List<Employee> employees = new List<Employee>();
-			foreach(Employee employee in List)
-			{
-				if (specification.Specificied(employee))
-				{
-					employees.Add(employee);
-				}
-			}
+			List<Employee> employees = List.Where(employee => specification.Specificied(employee)).ToList();
 			return employees;
 		}
 
@@ -57,7 +50,7 @@ namespace ReactPage.Models
 		{
 			using (IDbConnection conn = new MySqlConnection(connectionString))
 			{
-				conn.Execute($"UPDATE `tblemployee` SET `Name` = '${item.Name}', `City` = '${item.City}', `Department` = '${item.Department}', `Gender` = '${item.Gender}' WHERE `tblemployee`.`EmployeeID` = ${item.EmployeeID}");
+				conn.Execute($"UPDATE `tblemployee` SET `Name` = '{item.Name}', `City` = '{item.City}', `Department` = '{item.Department}', `Gender` = '{item.Gender}' WHERE `tblemployee`.`EmployeeID` = {item.EmployeeID}");
 			}
 		}
 	}

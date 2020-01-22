@@ -32,6 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\components\AddEmployee.tsx" />
     <None Remove="ClientApp\src\components\Notfound.tsx" />
   </ItemGroup>
 
@@ -40,6 +41,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\components\AddEmployee.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\NotFound.tsx" />
   </ItemGroup>
 
