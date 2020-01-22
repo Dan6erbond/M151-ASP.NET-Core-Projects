@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -27,6 +27,7 @@
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
     <Content Remove="$(SpaRoot)**" />
+    <Content Include="ClientApp\src\components\Image.css" />
     <None Remove="$(SpaRoot)**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
@@ -43,6 +44,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\components\AddEmployee.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\NotFound.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\components\SlidingPages.tsx" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

@@ -9,7 +9,8 @@ import Home from './components/Home';
 import Employees from './components/Employees';
 import AddEmployee from './components/AddEmployee';
 import NotFound from './components/NotFound';
-import './custom.css'
+import './custom.css';
+import SlidingPages from "./components/SlidingPages";
 
 export default () => (
     <Router>
@@ -19,6 +20,7 @@ export default () => (
                 <Route exact path='/employees' component={Employees} />
                 <Route exact path='/employees/add' component={AddEmployee} />
                 <Route exact path='/employees/edit/:empid' component={AddEmployee} />
+                <Route exact path='/sliding-pages' component={SlidingPages} />
                 <Route component={NotFound} />
             </Switch>
         </Layout>
