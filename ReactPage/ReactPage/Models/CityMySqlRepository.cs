@@ -36,7 +36,7 @@ namespace ReactPage.Models
 
 		public List<City> Query(ISpecification<City> specification)
 		{
-			List<City> cities = List.Where(city => specification.Specificied(city)).ToList();
+			List<City> cities = List.Where(specification.Specificied).ToList();
 			return cities;
 		}
 
