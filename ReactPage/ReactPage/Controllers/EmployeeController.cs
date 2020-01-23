@@ -14,44 +14,50 @@ namespace ReactPage.Controllers
 {
 	[Route("api/employee")]
 	public class EmployeeController : Controller
-	{
-		private EmployeeMySqlRepository EmployeeRepository = new EmployeeMySqlRepository();
-		private CityMySqlRepository CityRepository = new CityMySqlRepository();
+    {
+        private readonly IRepository<Employee> _employeeRepository; 
+        private readonly IRepository<City> _cityRepository;
+
+        public EmployeeController(IRepository<Employee> employeeRepository, IRepository<City> cityRepository)
+        {
+            _employeeRepository = employeeRepository;
+            _cityRepository = cityRepository;
+        }
 
         [HttpGet("")]
         public IEnumerable<Employee> Index()
 		{
-			return EmployeeRepository.List;
+			return _employeeRepository.List;
 		}
 
         [HttpPost("Create")]
         public void Create(Employee employee)
         {
-            EmployeeRepository.Create(employee);
+            _employeeRepository.Create(employee);
         }
 
         [HttpGet("Details/{id}")]
         public Employee Details(int id)
         {
-            return EmployeeRepository.Query(new EmployeeSpecification(id)).First();
+            return _employeeRepository.Query(new EmployeeSpecification(id)).First();
         }
 
         [HttpPut("Edit")]
         public void Edit(Employee employee)
         {
-            EmployeeRepository.Update(employee);
+            _employeeRepository.Update(employee);
         }
 
         [HttpDelete("Delete/{id}")]
         public void Delete(int id)
         {
-            EmployeeRepository.Delete(EmployeeRepository.Query(new EmployeeSpecification(id)).First());
+            _employeeRepository.Delete(_employeeRepository.Query(new EmployeeSpecification(id)).First());
         }
 
         [HttpGet("Cities")]
         public IEnumerable<City> Cities()
         {
-            return CityRepository.List;
+            return _cityRepository.List;
         }
     }
 }

@@ -5,53 +5,45 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 
 namespace ReactPage.Models
 {
 	public class EmployeeMySqlRepository : IRepository<Employee>
 	{
-		private readonly String connectionString = "server=localhost;port=3306;user=root;password=;database=employee_manager_react";
-		public IEnumerable<Employee> List
+		private readonly IDbConnection _connection;
+		public IEnumerable<Employee> List { get; private set; }
+		
+		public EmployeeMySqlRepository(IConfiguration config)
 		{
-			get
-			{
-				List<Employee> employees = new List<Employee>();
-				using (IDbConnection conn = new MySqlConnection(connectionString))
-				{
-					employees = conn.Query<Employee>("SELECT * FROM tblemployee").ToList();
-					return employees;
-				}
-			}
+			_connection = new MySqlConnection(config["ConnectionString"]);
+			
+			List = _connection.Query<Employee>("SELECT * FROM tblemployee").ToList();
 		}
 
 		public void Create(Employee item)
 		{
-			using (IDbConnection conn = new MySqlConnection(connectionString))
-			{
-				conn.Execute($"INSERT INTO `tblemployee` (`EmployeeID`, `Name`, `City`, `Department`, `Gender`) VALUES (NULL, '{item.Name}', '{item.City}', '{item.Department}', '{item.Gender}');");
-			}
+			_connection.Execute($"INSERT INTO `tblemployee` (`EmployeeID`, `Name`, `City`, `Department`, `Gender`) VALUES (NULL, '{item.Name}', '{item.City}', '{item.Department}', '{item.Gender}');");
+			List = _connection.Query<Employee>("SELECT * FROM tblemployee").ToList();
 		}
 
 		public void Delete(Employee item)
 		{
-			using (IDbConnection conn = new MySqlConnection(connectionString))
-			{
-				conn.Execute($"DELETE FROM `tblemployee` WHERE `tblemployee`.`EmployeeID` = {item.EmployeeID}");
-			}
+			_connection.Execute($"DELETE FROM `tblemployee` WHERE `tblemployee`.`EmployeeID` = {item.EmployeeID}");
+			List = _connection.Query<Employee>("SELECT * FROM tblemployee").ToList();
 		}
 
 		public List<Employee> Query(ISpecification<Employee> specification)
 		{
-			List<Employee> employees = List.Where(employee => specification.Specificied(employee)).ToList();
+			List<Employee> employees = List.Where(specification.Specificied).ToList();
 			return employees;
 		}
 
 		public void Update(Employee item)
 		{
-			using (IDbConnection conn = new MySqlConnection(connectionString))
-			{
-				conn.Execute($"UPDATE `tblemployee` SET `Name` = '{item.Name}', `City` = '{item.City}', `Department` = '{item.Department}', `Gender` = '{item.Gender}' WHERE `tblemployee`.`EmployeeID` = {item.EmployeeID}");
-			}
+			_connection.Execute($"UPDATE `tblemployee` SET `Name` = '{item.Name}', `City` = '{item.City}', `Department` = '{item.Department}', `Gender` = '{item.Gender}' WHERE `tblemployee`.`EmployeeID` = {item.EmployeeID}");
+			List = _connection.Query<Employee>("SELECT * FROM tblemployee").ToList();
 		}
 	}
 }

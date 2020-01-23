@@ -48,7 +48,7 @@ export default class SlidingPages extends React.Component<IProps, IState> {
     }
 
     onClick(event: React.MouseEvent<any, MouseEvent>) {
-        var index = this.state.index;
+        let index = this.state.index;
         index += 1;
         
         if (index >= urls.length) {

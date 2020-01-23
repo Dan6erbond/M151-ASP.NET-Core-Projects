@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ReactPage.Models;
 
 namespace ReactPage
 {
@@ -28,6 +29,9 @@ namespace ReactPage
 			{
 				configuration.RootPath = "ClientApp/build";
 			});
+
+			services.AddSingleton<IRepository<Employee>, EmployeeMySqlRepository>();
+			services.AddSingleton<IRepository<City>, CityMySqlRepository>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

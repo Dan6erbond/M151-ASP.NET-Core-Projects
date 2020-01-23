@@ -26,6 +26,15 @@ namespace ReactPage
 				.ConfigureWebHostDefaults(webBuilder =>
 				{
 					webBuilder.UseStartup<Startup>();
+				})
+				.ConfigureAppConfiguration((hostingContext, config) =>
+				{
+					var dict = new Dictionary<string, string>
+					{
+						{"ConnectionString", "server=localhost;port=3306;user=root;password=;database=employee_manager_react"},
+					};
+
+					config.AddInMemoryCollection(dict);
 				});
 	}
 }
