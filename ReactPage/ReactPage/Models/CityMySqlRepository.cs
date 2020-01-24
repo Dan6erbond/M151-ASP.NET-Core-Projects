@@ -17,7 +17,7 @@ namespace ReactPage.Models
 
 		public CityMySqlRepository(IConfiguration config)
 		{
-			_connection = new MySqlConnection(config["ConnectionString"]);
+			_connection = new MySqlConnection(config["ConnectionStrings:Default"]);
 			
 			List = _connection.Query<City>("SELECT * FROM tblcities").ToList();
 		}
