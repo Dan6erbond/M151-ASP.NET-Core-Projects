@@ -43,6 +43,8 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\components\AddEmployee.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\components\Container.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\components\Navbar.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\NotFound.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\SlidingPages.tsx" />
   </ItemGroup>

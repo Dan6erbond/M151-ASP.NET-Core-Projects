@@ -2,6 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
 import { Link } from 'react-router-dom';
+import Container from "./Container";
 
 export class EmployeeData {
     employeeID: number = 0;
@@ -9,9 +10,6 @@ export class EmployeeData {
     gender: string = "";
     city: string = "";
     department: string = "";
-}
-
-interface IProps {
 }
 
 interface IState {
@@ -36,16 +34,20 @@ class Employees extends React.Component<RouteComponentProps<{}>, IState> {
 
     public render() {
         let contents = this.state.loading
-            ? <p><em>Loading...</em></p>
+            ? <p><em>Loading...Test</em></p>
             : this.renderEmployeeTable(this.state.empList);
-        return <div>
-            <h1>Employee Data</h1>
-            <p>This component demonstrates fetching Employee data from the server.</p>
-            <p>
-                <Link to="/employees/add">Create New</Link>
-            </p> 
-            {contents}
-        </div>;
+        return (
+            <Container path={["Employees"]}>
+                <div>
+                    <h1>Employee Data</h1>
+                    <p>This component demonstrates fetching Employee data from the server.</p>
+                    <p>
+                        <Link to="/employees/add">Create New</Link>
+                    </p>
+                    {contents}
+                </div>
+            </Container>
+        );
     }
 
     private handleDelete(id: number) {

@@ -4,13 +4,14 @@ import {
     Route,
     Switch
 } from 'react-router-dom'
-import Layout from './components/Layout';
 import Home from './components/Home';
 import Employees from './components/Employees';
 import AddEmployee from './components/AddEmployee';
 import NotFound from './components/NotFound';
 import './custom.css';
 import SlidingPages from "./components/SlidingPages";
+import 'antd/dist/antd.css';
+import Layout from "./components/Layout";
 
 export default () => (
     <Router>
