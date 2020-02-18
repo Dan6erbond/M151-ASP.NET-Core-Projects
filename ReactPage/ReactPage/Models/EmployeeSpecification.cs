@@ -8,16 +8,16 @@ namespace ReactPage.Models
 	public class EmployeeSpecification : ISpecification<Employee>
 	{
 
-		private int? EmployeeID = null;
+		private readonly int? _employeeId = null;
 
-		public EmployeeSpecification(int? employeeID = null)
+		public EmployeeSpecification(int? employeeId = null)
 		{
-			this.EmployeeID = employeeID;
+			this._employeeId = employeeId;
 		}
 
 		public bool Specificied(Employee item)
 		{
-			if (EmployeeID != null && item.EmployeeID != EmployeeID)
+			if (_employeeId != null && item.EmployeeID != _employeeId)
 			{
 				return false;
 			}
